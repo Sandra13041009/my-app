@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 
 import background from "./images/pexels-artur-roman-539711.jpg";
 import tomorrow from "./images/sunny.png";
