@@ -81,9 +81,9 @@ export default function Weather() {
                 <strong>Tomorrow's Weather</strong>
                 <br />
                 <strong>
-                  <span>18</span>°
+                  <span>18 </span>°
                 </strong>
-                <span>11</span>°
+                <span> (11)</span>°
                 <img src={tomorrow} className="imageTomorrow" alt="" />
               </div>
             </div>
@@ -132,12 +132,10 @@ export default function Weather() {
         </div>
         <small className="link">
           <a
-            href="https://github.com/Sandra13041009/weather-app"
+            href="https://github.com/Sandra13041009/my-app"
             target="_blank"
             rel="noopener noreferrer"
-          >
-            Open-source code
-          </a>
+          >Open-source code </a>
           by Sandra Horn
         </small>
       </div>
