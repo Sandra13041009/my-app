@@ -36,9 +36,12 @@ export default function Weather(props) {
           >
             <div className="row">
               <div className="col-4">
-                Your local time:
+                Data last updated:
                 <h6>
-                  <FormattedDate date={weatherData.date} />{" "}
+                  <strong>
+                    {" "}
+                    <FormattedDate date={weatherData.date} />
+                  </strong>{" "}
                 </h6>
               </div>
 
