@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./formattedDate";
 import "./App.css";
 
 import background from "./images/pexels-artur-roman-539711.jpg";
@@ -10,7 +11,7 @@ import Wed from "./images/sunny.png";
 import Thu from "./images/sun_clouds.png";
 import Fri from "./images/clouds.png";
 
-export default function Weather() {
+export default function Weather(props) {
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
   function handleResponse(response) {
@@ -18,6 +19,7 @@ export default function Weather() {
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
       city: response.data.name,
       wind: response.data.wind.speed,
     });
@@ -35,7 +37,9 @@ export default function Weather() {
             <div className="row">
               <div className="col-4">
                 Your local time:
-                <h6 style={{ fontWeight: "bold" }}>Saturday, 10:31</h6>
+                <h6>
+                  <FormattedDate date={weatherData.date} />{" "}
+                </h6>
               </div>
 
               <div className="col-7">
@@ -175,8 +179,8 @@ export default function Weather() {
     );
   } else {
     const apiKey = "98612a22cb9a3addb8d9134910c82826";
-    let city = "Detroit";
-    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
