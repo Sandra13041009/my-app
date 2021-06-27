@@ -5,7 +5,6 @@ import "./App.css";
 import SearchEngine from "./SearchEngine";
 
 import background from "./images/pexels-artur-roman-539711.jpg";
-import tomorrow from "./images/sunny.png";
 import Mon from "./images/clouds.png";
 import Tue from "./images/clouds_rain.png";
 import Wed from "./images/sunny.png";
