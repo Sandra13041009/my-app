@@ -1,4 +1,5 @@
 import React from "react";
+import Conversion from "./Conversion";
 import "./App.css";
 
 export default function SearchEngine(props) {
@@ -14,21 +15,8 @@ export default function SearchEngine(props) {
             {" "}
             <h3> {props.info.city} </h3>{" "}
           </p>
+          <Conversion celsius={props.info.temperature} />
 
-          <span id="resultTemperature">
-            {" "}
-            {Math.round(props.info.temperature)}
-          </span>
-
-          <span className="units">
-            <a href="/#" id="Fahrenheit" className="link">
-              °C
-            </a>
-            |
-            <a href="/#" id="Celsius" className="link">
-              °F
-            </a>
-          </span>
           <strong>
             <p id="description" style={{ textTransform: "capitalize" }}>
               {props.info.description}
