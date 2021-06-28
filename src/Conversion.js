@@ -10,7 +10,7 @@ export default function Conversion(props) {
 
   function convertToCelsius(event) {
     event.preventDefault();
-    setUnit("Celsius");
+    setUnit("celsius");
   }
 
   function Fahrenheit() {
@@ -20,7 +20,6 @@ export default function Conversion(props) {
     return (
       <div>
         <span id="resultTemperature"> {Math.round(props.celsius)}</span>
-
         <span className="units">
           °C |{" "}
           <a
@@ -36,15 +35,16 @@ export default function Conversion(props) {
       </div>
     );
   } else {
-    <div>
-      <span id="resultTemperature"> {Math.round(Fahrenheit())}</span>
-
-      <span className="units">
-        <a href="/" id="Celsius" className="link" onClick={convertToCelsius}>
-          °C{" "}
-        </a>
-        | °F{" "}
-      </span>
-    </div>;
+    return (
+      <div>
+        <span id="resultTemperature"> {Math.round(Fahrenheit())}</span>
+        <span className="units">
+          <a href="/" id="Celsius" className="link" onClick={convertToCelsius}>
+            °C{" "}
+          </a>
+          | °F{" "}
+        </span>
+      </div>
+    );
   }
 }
