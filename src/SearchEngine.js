@@ -11,7 +11,7 @@ export default function SearchEngine(props) {
 
       <div className="col-4  justify-content-center  align-items-center">
         <div className="temperature">
-          <p id="resultCity" class="mainIcon">
+          <p id="resultCity" className="mainIcon">
             {" "}
             <h3> {props.info.city} </h3>{" "}
           </p>
