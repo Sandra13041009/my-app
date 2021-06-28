@@ -13,10 +13,9 @@ export default function SearchEngine(props) {
         <div className="temperature">
           <p id="resultCity" className="mainIcon">
             {" "}
-            <h3> {props.info.city} </h3>{" "}
           </p>
+          <h3> {props.info.city} </h3>{" "}
           <Conversion celsius={props.info.temperature} />
-
           <strong>
             <p id="description" style={{ textTransform: "capitalize" }}>
               {props.info.description}
