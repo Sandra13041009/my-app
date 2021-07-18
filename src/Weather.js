@@ -3,13 +3,9 @@ import axios from "axios";
 import FormattedDate from "./formattedDate";
 import "./App.css";
 import SearchEngine from "./SearchEngine";
+import Forecast from "./Forecast";
 
 import background from "./images/pexels-artur-roman-539711.jpg";
-import Mon from "./images/clouds.png";
-import Tue from "./images/clouds_rain.png";
-import Wed from "./images/sunny.png";
-import Thu from "./images/sun_clouds.png";
-import Fri from "./images/clouds.png";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -17,31 +13,28 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({});
   function handleResponse(response) {
     setWeatherData({
-      loaded: true,
+      ready: true,
       temperature: response.data.main.temp,
-      description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      coordinates: response.data.coord,
       city: response.data.name,
       wind: response.data.wind.speed,
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
-
     setReady(true);
   }
 
   function search() {
     const apiKey = "98612a22cb9a3addb8d9134910c82826";
-
-    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     search();
   }
-
   function handleSearch(event) {
     setCity(event.target.value);
   }
@@ -86,10 +79,10 @@ export default function Weather(props) {
                     type="button"
                     className="btn btn-primary"
                   >
-                    <i class="fas fa-search"></i>
+                    <i className="fas fa-search"></i>
                   </button>
                   <button type="button" id="currentLocation">
-                    <i class="fas fa-street-view" />
+                    <i className="fas fa-street-view" />
                   </button>
                 </form>
               </div>
@@ -98,45 +91,7 @@ export default function Weather(props) {
             <div>
               <SearchEngine info={weatherData} />
             </div>
-            <div className="forecast" id="forecast">
-              <div className="row justify-content-center">
-                <div className="col-2">
-                  {" "}
-                  <span>Mon</span>
-                  <br />
-                  12°
-                  <img src={Mon} className="img-fluid" alt="" />
-                </div>
-                <div className="col-2">
-                  {" "}
-                  <span>Tue</span>
-                  <br />
-                  18°
-                  <img src={Tue} className="img-fluid" alt="" />
-                </div>
-                <div className="col-2">
-                  {" "}
-                  <span>Wed</span>
-                  <br />
-                  13°
-                  <img src={Wed} className="img-fluid" alt="" />
-                </div>
-                <div className="col-2">
-                  {" "}
-                  <span>Thu</span>
-                  <br />
-                  10°
-                  <img src={Thu} className="img-fluid" alt="" />
-                </div>
-                <div className="col-2">
-                  {" "}
-                  <span>Fri</span>
-                  <br />
-                  17°
-                  <img src={Fri} className="img-fluid" alt="" />
-                </div>
-              </div>
-            </div>
+            <Forecast coordinates={weatherData.coordinates} />
           </div>
 
           <small className="link">
