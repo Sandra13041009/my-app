@@ -16,7 +16,6 @@ export default function Forecast(props) {
   }
 
   if (loaded) {
-    console.log(forecast);
     return (
       <div className="forecast" id="forecast">
         <div className="row justify-content-center">
@@ -27,11 +26,7 @@ export default function Forecast(props) {
             <span>{forecast[0].temp.max}°</span>
             <br />
             <span>{forecast[0].temp.min}° </span>
-            <img
-              src={forecast[0].weather[0].icon}
-              alt=""
-              className="img-fluid"
-            />
+            <img src={props.info.iconUrl} alt="" className="img-fluid" />
           </div>
           <div className="col-2">
             {" "}
@@ -67,7 +62,7 @@ export default function Forecast(props) {
   } else {
     let lon = props.coordinates.lon;
     let lat = props.coordinates.lat;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=98612a22cb9a3addb8d9134910c82826&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=42d00e01a69ecac9854a504f03bffe12&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
     return null;
