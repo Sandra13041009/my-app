@@ -1,12 +1,16 @@
 import React from "react";
 import Conversion from "./Conversion";
+import WeatherIcon from "./WeatherIcon";
+
 import "./App.css";
 
 export default function SearchEngine(props) {
   return (
-    <div className="row">
+    <div className="row middle">
       <div className="col-3">
-        <img src={props.info.iconUrl} alt="" className="IMG" />
+        <div className="IMG">
+          <WeatherIcon code={props.info.icon} />
+        </div>
       </div>
 
       <div className="col-4  justify-content-center  align-items-center">
@@ -34,13 +38,10 @@ export default function SearchEngine(props) {
         <div className="tomorrow" id="tomorrow">
           <strong>Tomorrow's Weather</strong>
           <br />
-          <strong>
-            <span>18 </span>°
-          </strong>
-          <span> (11)</span>°<p>insert tomorrow</p>
+
+          {/*Temperature for upcoming day goes here */}
         </div>
       </div>
     </div>
   );
 }
-// <img src={tomorrow} className="imageTomorrow" alt="" />

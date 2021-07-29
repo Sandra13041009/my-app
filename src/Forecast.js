@@ -1,60 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import Tue from "./images/clouds_rain.png";
-import Wed from "./images/sunny.png";
-import Thu from "./images/sun_clouds.png";
-import Fri from "./images/clouds.png";
+import DailyForecast from "./DailyForecast";
 
 export default function Forecast(props) {
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
   function handleResponse(response) {
-    console.log(response.data);
     setForecast(response.data.daily);
+
     setLoaded(true);
   }
 
   if (loaded) {
     return (
-      <div className="forecast" id="forecast">
-        <div className="row justify-content-center">
-          <div className="col-2">
-            {" "}
-            <span>Mon</span>
-            <br />
-            <span>{forecast[0].temp.max}°</span>
-            <br />
-            <span>{forecast[0].temp.min}° </span>
-            <img src={props.info.iconUrl} alt="" className="img-fluid" />
+      <div>
+        <div className="row middle">
+          <div className="col-3">
+            <div className="tomorrow" id="tomorrow">
+              <strong>Tomorrow's Weather</strong>
+              <br />
+              <DailyForecast data={forecast[1]} />
+            </div>
           </div>
-          <div className="col-2">
-            {" "}
-            <span>Tue</span>
-            <br />
-            18°
-            <img src={Tue} className="img-fluid" alt="" />
-          </div>
-          <div className="col-2">
-            {" "}
-            <span>Wed</span>
-            <br />
-            13°
-            <img src={Wed} className="img-fluid" alt="" />
-          </div>
-          <div className="col-2">
-            {" "}
-            <span>Thu</span>
-            <br />
-            10°
-            <img src={Thu} className="img-fluid" alt="" />
-          </div>
-          <div className="col-2">
-            {" "}
-            <span>Fri</span>
-            <br />
-            17°
-            <img src={Fri} className="img-fluid" alt="" />
+        </div>
+
+        <div className="forecast justify-content-center" id="forecast">
+          <div className="row justify-content-center">
+            {forecast.map(function (dailyForecast, index) {
+              if (index > 1) {
+                return (
+                  <div className="col-2" key={index}>
+                    <DailyForecast data={dailyForecast} />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
           </div>
         </div>
       </div>
@@ -62,6 +49,7 @@ export default function Forecast(props) {
   } else {
     let lon = props.coordinates.lon;
     let lat = props.coordinates.lat;
+
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=42d00e01a69ecac9854a504f03bffe12&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
