@@ -81,9 +81,6 @@ export default function Weather(props) {
                   >
                     <i className="fas fa-search"></i>
                   </button>
-                  <button type="button" id="currentLocation">
-                    <i className="fas fa-street-view" />
-                  </button>
                 </form>
               </div>
             </div>

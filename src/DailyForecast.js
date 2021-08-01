@@ -31,7 +31,7 @@ export default function DailyForecast(props) {
       </strong>
       (<span>{minTemperature()}</span>){/*icon goes here */}
       <div className="canvas">
-        <WeatherIcon code={props.data.weather[0].icon} />
+        <WeatherIcon code={props.data.weather[0].icon} size={50} />
       </div>
     </div>
   );

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DailyForecast from "./DailyForecast";
 
-export default function Forecast(props) {
+export default function Tomorrow(props) {
   let [loaded, setLoaded] = useState(false);
-  let [forecast, setForecast] = useState(null);
+  let [tomorrowForecast, setForecast] = useState(null);
 
   useEffect(() => {
     setLoaded(false);
@@ -19,25 +19,26 @@ export default function Forecast(props) {
   if (loaded) {
     return (
       <div>
-        <div className="forecast justify-content-center" id="forecast">
-          <div className="row justify-content-center">
-            {forecast.map(function (dailyForecast, index) {
-              if (index > 1) {
-                return (
-                  <div className="col-2" key={index}>
-                    <DailyForecast data={dailyForecast} />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div>
+        <div className="tomorrow" id="tomorrow">
+          <strong>Tomorrow's Weather</strong>
+          <br />
+          {tomorrowForecast.map(function (dailyForecast, index) {
+            if (index > 1) {
+              return (
+                <div className="col-2" key={index}>
+                  <DailyForecast data={dailyForecast} />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
       </div>
     );
   } else {
     let lon = props.coordinates.lon;
+
     let lat = props.coordinates.lat;
 
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=42d00e01a69ecac9854a504f03bffe12&units=metric`;
