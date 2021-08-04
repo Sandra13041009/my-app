@@ -79,17 +79,12 @@
 .additionalInfo {
   font-size: smaller;
 }
-#tomorrow {
-  margin-top: 20px;
+.tomorrow {
+  margin-top: 25px;
+
   padding: 25px 0px 0px 5px;
   height: 110px;
   width: 170px;
-}
-.imageTomorrow {
-  width: 105px;
-  margin: 40px 0px 0px 20px;
-  position: relative;
-  top: -50px;
 }
 
 .canvas {

@@ -35,9 +35,8 @@ export default function SearchEngine(props) {
         </div>
       </div>
 
-      <div className="col-3">
-        <Tomorrow />
-        {/*Temperature for upcoming day goes here */}
+      <div className="col-3  ">
+        <Tomorrow coordinates={props.info.coordinates} />
       </div>
     </div>
   );
